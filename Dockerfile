@@ -1,5 +1,5 @@
-# VEnhancer Runpod template image
-FROM runpod/pytorch:2.8.0-py3.11-cuda12.8.1-cudnn-devel-ubuntu22.04
+# VEnhancer Runpod template image (torch 2.2.1 + Python 3.10)
+FROM runpod/pytorch:2.2.1-py3.10-cuda12.1.1-devel-ubuntu22.04
 
 ENV DEBIAN_FRONTEND=noninteractive \
     PYTHONUNBUFFERED=1 \
@@ -21,6 +21,9 @@ RUN rm -f /etc/apt/sources.list.d/cuda*.list && \
         apache2-utils \
         rsync \
         unzip \
+        build-essential \
+        ninja-build \
+        cmake \
     && apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -37,7 +40,8 @@ RUN git clone --depth 1 "$VENHANCER_REPO" /opt/venhancer_source && \
 
 # Python dependencies
 RUN python3 -m pip install --upgrade pip wheel && \
-    python3 -m pip install --no-cache-dir -r /opt/venhancer_source/requirements.txt && \
+    python3 -m pip install --no-cache-dir --extra-index-url https://download.pytorch.org/whl/cu121 \
+        -r /opt/venhancer_source/requirements.txt && \
     python3 -m pip install --no-cache-dir safetensors==0.4.3 && \
     rm -rf /root/.cache/pip
 

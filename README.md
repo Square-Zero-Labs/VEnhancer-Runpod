@@ -71,10 +71,11 @@ docker logs -f <container-name>
 If VRAM stays allocated after a heavy run, restart the Gradio process without rebooting the pod:
 
 ```bash
-restart-venhancer
+restart-venhancer            # reuse the last version
+restart-venhancer --version v2   # switch checkpoints and restart
 ```
 
-The helper stops the current process, flushes CUDA caches, and relaunches the UI using the existing environment settings.
+The helper stops the current process, flushes CUDA caches, ensures the requested checkpoint is present (downloading if needed), and relaunches the UI using the current environment settings.
 
 ## Checkpoint Handling
 

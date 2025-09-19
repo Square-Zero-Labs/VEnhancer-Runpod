@@ -66,6 +66,16 @@ For Docker-based local testing:
 docker logs -f <container-name>
 ```
 
+## Restarting the Service
+
+If VRAM stays allocated after a heavy run, restart the Gradio process without rebooting the pod:
+
+```bash
+restart-venhancer
+```
+
+The helper stops the current process, flushes CUDA caches, and relaunches the UI using the existing environment settings.
+
 ## Checkpoint Handling
 
 - By default the startup script downloads `venhancer_<variant>-fp16.safetensors` from `Kijai/VEnhancer-fp16` and converts it to `venhancer_<variant>.pt`.

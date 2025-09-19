@@ -45,9 +45,11 @@ RUN python3 -m pip install --upgrade pip wheel && \
     python3 -m pip install --no-cache-dir gradio==5.35.0 gradio_client>=1.4.0 safetensors==0.4.3 && \
     rm -rf /root/.cache/pip
 
-# Copy startup helper
+# Copy runtime helpers
 COPY start-venhancer.sh /usr/local/bin/start-venhancer.sh
-RUN chmod +x /usr/local/bin/start-venhancer.sh
+COPY restart-venhancer.sh /usr/local/bin/restart-venhancer
+RUN chmod +x /usr/local/bin/start-venhancer.sh \
+    /usr/local/bin/restart-venhancer
 
 EXPOSE 7862 8888
 

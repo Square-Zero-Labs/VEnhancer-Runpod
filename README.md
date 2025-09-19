@@ -27,7 +27,7 @@ Push the repository and GitHub Actions (`docker-build.yml`) will handle builds f
    - `VENHANCER_VERSION` (`v1` ➜ v1/paper checkpoint, `v2` ➜ v2 checkpoint)
    - `HF_TOKEN` (optional &ndash; required when the checkpoint repo needs authentication)
 3. Expose port **7862** in RunPod; the container maps nginx → Gradio (7860) internally.
-4. Launch the pod and open the forwarded 7862 endpoint in your browser. Authenticate with the username/password above.
+4. Launch the pod and open the forwarded 7862 endpoint in your browser. Authenticate with the username/password above. (Gradio listens on `0.0.0.0:7860`; nginx proxies to 7862.)
 
 The startup script writes logs to `/workspace/venhancer.log`. If the checkpoint already exists in `/workspace/VEnhancer/ckpts`, it is reused and no download occurs.
 

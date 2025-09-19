@@ -42,7 +42,7 @@ RUN git clone --depth 1 "$VENHANCER_REPO" /opt/venhancer_source && \
 RUN python3 -m pip install --upgrade pip wheel && \
     python3 -m pip install --no-cache-dir --extra-index-url https://download.pytorch.org/whl/cu121 \
         -r /opt/venhancer_source/requirements.txt && \
-    python3 -m pip install --no-cache-dir safetensors==0.4.3 && \
+    python3 -m pip install --no-cache-dir gradio==5.35.0 gradio_client>=1.4.0 safetensors==0.4.3 && \
     rm -rf /root/.cache/pip
 
 # Copy startup helper

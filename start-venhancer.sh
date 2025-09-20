@@ -28,7 +28,7 @@ fi
 mkdir -p "$CKPT_DIR" "$RESULTS_DIR" "$TMP_DIR" "$PROMPTS_DIR" "$OUTPUT_DIR"
 
 # Determine desired model variant from the requested app version
-REQUESTED_VERSION=${VENHANCER_VERSION:-v1}
+REQUESTED_VERSION=${VENHANCER_VERSION:-v2}
 case "$REQUESTED_VERSION" in
     v2)
         MODEL_VARIANT="v2"

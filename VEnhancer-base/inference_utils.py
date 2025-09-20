@@ -1,4 +1,5 @@
 import os
+import shutil
 import subprocess
 import tempfile
 from typing import Mapping
@@ -112,6 +113,50 @@ def save_video(video, save_dir, file_name, fps=16.0):
         logger.error(f"Save Video Error with {output}")
     os.system(f"rm -rf {temp_dir}")
     os.rename(tmp_path, output_path)
+
+
+def attach_audio_from_source(source_video: str, target_video: str):
+    """Mux the audio track from source_video into target_video in-place."""
+    if not os.path.exists(source_video):
+        logger.warning(f"Audio source {source_video} not found; skipping audio muxing")
+        return
+    if not os.path.exists(target_video):
+        logger.warning(f"Generated video {target_video} not found; skipping audio muxing")
+        return
+    if shutil.which("ffmpeg") is None:
+        logger.warning("ffmpeg not available; cannot attach audio")
+        return
+
+    tmp_output = f"{target_video}.tmp"
+    cmd = [
+        "ffmpeg",
+        "-y",
+        "-i",
+        target_video,
+        "-i",
+        source_video,
+        "-map",
+        "0:v:0",
+        "-map",
+        "1:a:0",
+        "-c:v",
+        "copy",
+        "-c:a",
+        "copy",
+        "-shortest",
+        tmp_output,
+    ]
+
+    result = subprocess.run(cmd, capture_output=True, text=True)
+    if result.returncode != 0:
+        logger.warning(
+            "Failed to attach audio to %s: %s", target_video, result.stderr.strip() or result.stdout.strip()
+        )
+        if os.path.exists(tmp_output):
+            os.remove(tmp_output)
+        return
+
+    os.replace(tmp_output, target_video)
 
 
 def collate_fn(data, device):

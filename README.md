@@ -31,6 +31,8 @@ Push the repository and GitHub Actions (`docker-build.yml`) will handle builds f
 
 The startup script writes logs to `/workspace/venhancer.log`. If the checkpoint already exists in `/workspace/VEnhancer/ckpts`, it is reused and no download occurs.
 
+Generated videos automatically inherit the audio track from the uploaded input clip when one is present.
+
 ## Updating Credentials
 
 To set the default UI password in a template, supply environment overrides:

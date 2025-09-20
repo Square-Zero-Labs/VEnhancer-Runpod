@@ -100,6 +100,7 @@ class VEnhancer:
         output_path = os.path.join(self.result_dir, f"{save_name}.mp4")
         if get_context_parallel_rank() == 0:
             save_video(output, self.result_dir, f"{save_name}.mp4", fps=target_fps)
+            attach_audio_from_source(video_path, output_path)
         dist.barrier()
         return output_path
 

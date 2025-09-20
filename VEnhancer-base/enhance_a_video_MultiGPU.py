@@ -97,10 +97,11 @@ class VEnhancer:
 
         output = tensor2vid(output)
 
+        output_path = os.path.join(self.result_dir, f"{save_name}.mp4")
         if get_context_parallel_rank() == 0:
             save_video(output, self.result_dir, f"{save_name}.mp4", fps=target_fps)
         dist.barrier()
-        return os.path.join(self.result_dir, save_name)
+        return output_path
 
     def download_model(self, version):
         REPO_ID = "jwhejwhe/VEnhancer"

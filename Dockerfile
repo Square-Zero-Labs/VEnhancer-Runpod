@@ -29,14 +29,8 @@ RUN rm -f /etc/apt/sources.list.d/cuda*.list && \
 
 RUN git lfs install
 
-# Preload VEnhancer source to a safe location
-ARG VENHANCER_REPO=https://github.com/Vchitect/VEnhancer.git
-ARG VENHANCER_COMMIT=80ffaa33988c583b129b730ce9d559b114de2d8c
-RUN git clone --depth 1 "$VENHANCER_REPO" /opt/venhancer_source && \
-    cd /opt/venhancer_source && \
-    git fetch origin $VENHANCER_COMMIT && \
-    git checkout $VENHANCER_COMMIT && \
-    rm -rf .git
+# Preload bundled VEnhancer source (checked in via subtree)
+COPY VEnhancer-base /opt/venhancer_source
 
 # Python dependencies
 RUN python3 -m pip install --upgrade pip wheel && \

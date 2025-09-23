@@ -127,7 +127,8 @@ def attach_audio_from_source(source_video: str, target_video: str):
         logger.warning("ffmpeg not available; cannot attach audio")
         return
 
-    tmp_output = f"{target_video}.tmp"
+    root, ext = os.path.splitext(target_video)
+    tmp_output = f"{root}.tmp{ext or '.mp4'}"
     cmd = [
         "ffmpeg",
         "-y",

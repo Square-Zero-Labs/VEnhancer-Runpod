@@ -9,7 +9,7 @@ VEnhancer applies a generative diffusion model to improve video fidelity and mot
 ## Quick Start
 
 1. **Deploy the template** using your RunPod account.
-2. **Ports**: expose port `7862`. The container runs Gradio on `7860` and proxies it through an authenticated nginx endpoint on `7862`.
+2. **Open the app**: Open the app on port `7862`.
 3. **Log in** when prompted:
    - Username: `admin`
    - Password: `venhancer`
@@ -55,7 +55,8 @@ The script stops the Gradio process, frees CUDA cache, ensures the requested che
 
 ## Resources
 
-- The [Dockerfile and code](https://github.com/Square-Zero-Labs/VEnhancer-Runpod) is open source.
+- The [Dockerfile and code](https://github.com/Square-Zero-Labs/VEnhancer-Runpod) are open source. If you encounter any problems, please open an issue in the repo.
+- [VEnhancer Repo](https://github.com/Vchitect/VEnhancer)
 - Video demo coming
 
 Enjoy enhancing your videos with VEnhancer on RunPod!

@@ -2,6 +2,8 @@
 
 This repository packages the [VEnhancer](https://github.com/Vchitect/VEnhancer) Gradio demo for RunPod. The container boots the model UI, protects it with an nginx basic-auth proxy, and optionally downloads the Kijai FP16 checkpoints on startup.
 
+The upstream [`VEnhancer-base`](VEnhancer-base) project is included here as a Git subtree. The VEnhancer source code in that directory remains subject to the license defined in that repo.
+
 ## Contents
 
 - `Dockerfile` &mdash; builds on `runpod/pytorch` and layers the VEnhancer application.

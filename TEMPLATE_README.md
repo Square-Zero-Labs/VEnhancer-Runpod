@@ -55,7 +55,7 @@ The script stops the Gradio process, frees CUDA cache, ensures the requested che
 
 ## Resources
 
-- The [Dockerfile and code](https://github.com/Square-Zero-Labs/VEnhancer-Runpod) are open source. If you encounter any problems, please open an issue in the repo.
+- The [Dockerfile and code](https://github.com/Square-Zero-Labs/VEnhancer-Runpod) are public. If you encounter any problems, please open an issue in the repo.
 - [VEnhancer Repo](https://github.com/Vchitect/VEnhancer)
 - [Video demo](https://youtu.be/rYDeopPdQz8)
 
